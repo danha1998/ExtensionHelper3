@@ -1,2 +1,3 @@
 # ExtensionHelper3
-extension helper
+
+A description of this package.
