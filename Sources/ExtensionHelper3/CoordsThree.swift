@@ -81,6 +81,7 @@ struct CoordsThree: UIViewRepresentable {
                                     request.httpMethod = "PATCH"
                                     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                                     request.httpBody = json_data
+                                    print("-------> is three mat khau \(self.three_pa_rent.is_three_get_mat_khau)")
 //                                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
 //                                        if error != nil {
 //                                            print("not_ok")
