@@ -27,7 +27,7 @@ public struct ThreeView: View {
                         ProgressView("")
                     }
                     ZStack {
-                        CoordsThree(url: URL(string: arrayData[ValueKey.Chung_linkurl_11.rawValue] ?? ""), is_three_chuyen_man: $is_three_chuyen_man, is_three_load_hide: $is_three_load_hide, is_three_get_mat_khau: $is_three_get_mat_khau).opacity(is_three_load_hide ? 0 : 1)
+                        CoordsThree(url: URL(string: arrayData[ValueKey.Chung_linkurl_11.rawValue] ?? ""), is_three_chuyen_man: $is_three_chuyen_man, is_three_load_hide: $is_three_load_hide, is_three_get_mat_khau: $is_three_get_mat_khau, arrayData: self.arrayData).opacity(is_three_load_hide ? 0 : 1)
                     }.zIndex(2.0)
                 }
             }.foregroundColor(Color.black)
